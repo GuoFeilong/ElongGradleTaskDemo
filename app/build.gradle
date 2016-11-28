@@ -1,0 +1,127 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "com.xingyi.elonggradletaskdemo"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    //Android自己的block
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+repositories{
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+}
+
+// 自定义task 类型 文件copy
+task myCopy(type: Copy)<< {
+    doLast {
+        from 'src/main'
+        into 'build'
+        println("复制成功")
+    }
+}
+// 文件的删除
+task myDelete(type: Delete) << {
+    File file = new File('app/test.txt');
+    file.delete();
+    println('文件删除成功');
+}
+// 文件的删除
+task myDeleteDir(type: Delete) << {
+    File file = new File('app/build');
+    file.deleteDir();
+    println('文件夹删除成功呢');
+}
+//有Action的task
+task actionTask << {
+    println 'I am actionTask'
+}
+//无Action的task
+task noActionTask {
+    doFirst{
+        println '最先执行,任何task执行我都执行'
+    }
+}
+
+// task真身
+TaskContainer taskContainer = project.getTasks();
+taskContainer.create('taskContainer', new Action<Task>() {
+    @Override
+    void execute(Task task) {
+        //用container的形式进行 doLast操作,不声明,则是doFirst操作
+        task.doLast {
+            println('<<---我是taskContainer执行的任务--->>');
+        }
+    }
+})
+
+// 删除文件或者删除文件夹
+project.delete(new Action<DeleteSpec>() {
+    @Override
+    void execute(DeleteSpec deleteSpec) {
+        deleteSpec.delete('test.txt')
+        deleteSpec.delete('testDir')
+        println('执行project默认API')
+    }
+})
+
+
+
+def a = 19;
+def b = 8;
+//def a = 'a';
+//def b = 'b';
+
+task projectDeleteM() << {
+    project.delete(new Action<DeleteSpec>() {
+        @Override
+        void execute(DeleteSpec deleteSpec) {
+            deleteSpec.delete(getBuildDir())
+            println('执行包装方法--project默认API' + getBuildDir() + '-->>调用方法' + testM(a, b))
+        }
+    })
+}
+
+// 声明一个方法,入参不做限制,
+def testM(def a, def b) {
+    println('def声明的方法' + new Date().format("yyyy-MM-dd-HH:mm"));
+//    return a * b;
+    return a + b;
+}
+
+// 明确返回类型
+int testC(int a, int b) {
+    return a + b;
+}
+
+println('---初始化app.gradle---')

@@ -1,0 +1,3 @@
+include ':app'
+println('--->初始化settings.gradle--->>')
+
