@@ -1,5 +1,6 @@
 package com.xingyi.elonggradletaskdemo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -66,16 +67,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //模拟数据
+        coupons = creatData();
+        couponAdapter = new CouponAdapter();
+        couponAdapter.setData(coupons);
+
         expandableListView = (SExpandableListView) findViewById(R.id.elv_coupon);
         // 在设置适配器之前设置是否支持下拉刷新
         expandableListView.setLoadingMoreEnabled(true);
         expandableListView.setPullRefreshEnabled(true);
-
-        coupons = creatData();
-        couponAdapter = new CouponAdapter();
-        couponAdapter.setData(coupons);
         expandableListView.setAdapter(couponAdapter);
-
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
@@ -89,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent(MainActivity.this, WithdrawActivity.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "-----点击了组----groupPosition" + groupPosition + "---孩子--childPosition" + childPosition, Toast.LENGTH_SHORT).show();
                 return false;
             }

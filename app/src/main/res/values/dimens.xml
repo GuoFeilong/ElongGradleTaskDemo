@@ -4,4 +4,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dimens_10_dp">10dp</dimen>
+    <dimen name="dimens_1_px">1px</dimen>
+    <dimen name="dimens_12_dp">12dp</dimen>
+    <dimen name="dimens_16_dp">16dp</dimen>
+    <dimen name="dimens_14_sp">14sp</dimen>
+    <dimen name="dimens_8_dp">8dp</dimen>
+    <dimen name="dimens_56_dp">56dp</dimen>
+    <dimen name="dimens_40_dp">40dp</dimen>
+    <dimen name="dimens_251_dp">251dp</dimen>
+    <dimen name="diments_17_sp">17sp</dimen>
+    <dimen name="diments_3_dp">3dp</dimen>
 </resources>

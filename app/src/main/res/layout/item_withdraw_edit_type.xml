@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@android:color/white">
+
+
+        <TextView
+            android:id="@+id/tv_left_title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_16_dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimens_12_dp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/color_888888"
+            android:textSize="@dimen/dimens_14_sp" />
+
+
+        <com.xingyi.elonggradletaskdemo.widget.withdraw.WithdrawClearEditText
+            android:id="@+id/cet_right_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_12_dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_E0E0E0"
+            android:textSize="@dimen/dimens_14_sp" />
+
+
+        <ImageView
+            android:id="@+id/iv_bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_1_px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dimens_12_dp"
+            android:background="@color/color_E0E0E0" />
+
+    </RelativeLayout>
+
+</LinearLayout>
